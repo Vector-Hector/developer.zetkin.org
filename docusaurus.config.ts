@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -40,10 +41,10 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: 'reference',
           sidebarPath: './sidebars.ts',
           editUrl:
             'https://github.com/zetkin/developer.zetkin.org/tree/master',
+          docItemComponent: '@theme/ApiItem',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -54,16 +55,24 @@ const config: Config = {
 
   plugins: [
     [
-      'docusaurus-plugin-openapi',
+      'docusaurus-plugin-openapi-docs',
       {
         id: 'openapi',
-        path: './api/openapi.json',
-        routeBasePath: 'api',
+        docsPluginId: 'classic',
+        config: {
+          openapi: {
+            specPath: 'api/openapi.json',
+            outputDir: 'docs/api',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+        },
       },
     ],
   ],
 
-  themes: ['docusaurus-theme-openapi'],
+  themes: ['docusaurus-theme-openapi-docs'],
 
   themeConfig: {
     image: 'img/cover.jpg',
@@ -84,7 +93,8 @@ const config: Config = {
           label: 'Reference',
         },
         {
-          href: '/api',
+          type: 'docSidebar',
+          sidebarId: 'openapiSidebar',
           position: 'left',
           label: 'API',
         },
