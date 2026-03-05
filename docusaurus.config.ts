@@ -98,10 +98,9 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'referenceSidebar',
           position: 'left',
-          label: 'Reference',
+          label: 'SDK',
+          href: '/docs/sdk'
         },
         {
           type: 'dropdown',
