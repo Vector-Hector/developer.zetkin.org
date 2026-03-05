@@ -1,8 +1,7 @@
 ---
-title: API reference
-layout: default
+title: Concepts
 ---
-This is a reference for the Zetkin Platform API.
+Here, we explain concepts in the Zetkin Platform API.
 
 
 ## General information

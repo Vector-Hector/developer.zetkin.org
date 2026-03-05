@@ -1,6 +1,4 @@
 ---
-docsection: views
-layout: api_section
 title: "Person views"
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Smart Searches
-layout: default
 ---
 
 ## Filters

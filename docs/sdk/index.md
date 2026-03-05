@@ -1,6 +1,5 @@
 ---
 title: Zetkin SDK
-layout: default
 ---
 
 ## At a glance
