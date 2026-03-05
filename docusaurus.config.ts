@@ -40,6 +40,7 @@ const config: Config = {
       'classic',
       {
         docs: {
+          routeBasePath: 'reference',
           sidebarPath: './sidebars.ts',
           editUrl:
             'https://github.com/zetkin/developer.zetkin.org/tree/master',
@@ -50,6 +51,19 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+
+  plugins: [
+    [
+      'docusaurus-plugin-openapi',
+      {
+        id: 'openapi',
+        path: './api/openapi.json',
+        routeBasePath: 'api',
+      },
+    ],
+  ],
+
+  themes: ['docusaurus-theme-openapi'],
 
   themeConfig: {
     image: 'img/cover.jpg',
@@ -68,6 +82,11 @@ const config: Config = {
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Reference',
+        },
+        {
+          href: '/api',
+          position: 'left',
+          label: 'API',
         },
         {
           href: 'https://github.com/zetkin/app.zetkin.org',
