@@ -28,3 +28,23 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.docs-wrapper .theme-doc-sidebar-container {
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.docs-wrapper main {
+  margin-left: var(--doc-sidebar-width);
+}
+
+.docs-wrapper .menu {
+   overflow-y: auto;
+   max-height: 100%;
+}
+
+.docs-wrapper .footer {
+  margin-left: var(--doc-sidebar-width);
+}
