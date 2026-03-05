@@ -60,13 +60,22 @@ const config: Config = {
         id: 'openapi',
         docsPluginId: 'classic',
         config: {
-          openapi: {
-            specPath: 'api/openapi.json',
-            outputDir: 'docs/api',
+          'core-v1': {
+            specPath: 'api/v1/openapi.json',
+            outputDir: 'docs/api/v1/paths',
             sidebarOptions: {
               groupPathsBy: 'tag',
+              categoryLinkSource: 'info',
             },
-          } satisfies OpenApiPlugin.Options,
+          },
+          'core-v2': {
+            specPath: 'api/v2/openapi.json',
+            outputDir: 'docs/api/v2/paths',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'info',
+            },
+          },
         },
       },
     ],
@@ -93,10 +102,16 @@ const config: Config = {
           label: 'Reference',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'openapiSidebar',
+          type: 'dropdown',
           position: 'left',
           label: 'API',
+          items: [{
+            label: 'Core v1',
+            to: '/docs/api/v1/getting-started'
+          }, {
+            label: 'Core v2',
+            to: '/docs/api/v2/getting-started'
+          }]
         },
         {
           type: 'docSidebar',
