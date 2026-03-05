@@ -99,6 +99,12 @@ const config: Config = {
           label: 'API',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'contributingSidebar',
+          position: 'right',
+          label: 'Contributing',
+        },
+        {
           href: 'https://github.com/zetkin/app.zetkin.org',
           label: 'GitHub',
           position: 'right',
