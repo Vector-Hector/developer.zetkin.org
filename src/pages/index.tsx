@@ -20,8 +20,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/api">
-            API Reference
+            to="/docs/api/v1/getting-started">
+            Core 1 Reference
           </Link>
         </div>
       </div>

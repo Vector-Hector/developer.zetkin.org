@@ -36,7 +36,7 @@ are instructions about this in different project READMEs.
 
 All of them use [Docker](https://www.docker.com/), so you will need to install [Docker Desktop](https://www.docker.com/get-started) for your computer platform.
 
-If you are using Windows a few more steps might be necessary. See the separate [contributor's guide for Windows users](/contributing/windows).
+If you are using Windows a few more steps might be necessary. See the separate [contributor's guide for Windows users](/docs/contributing/windows).
 
 ## Clone a project
 

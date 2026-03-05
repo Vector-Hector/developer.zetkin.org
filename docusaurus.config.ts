@@ -63,6 +63,7 @@ const config: Config = {
           'core-v1': {
             specPath: 'api/v1/openapi.json',
             outputDir: 'docs/api/v1/paths',
+            showInfoPage: false,
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'info',
@@ -71,6 +72,7 @@ const config: Config = {
           'core-v2': {
             specPath: 'api/v2/openapi.json',
             outputDir: 'docs/api/v2/paths',
+            showInfoPage: false,
             sidebarOptions: {
               groupPathsBy: 'tag',
               categoryLinkSource: 'info',

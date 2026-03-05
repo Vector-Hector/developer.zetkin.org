@@ -31,7 +31,7 @@ Update the installed distribution by opening the Ubuntu terminal, entering the c
 
 You should now be able to start developing by cloning the git repo, entering it and running the command `code .` to open that directory from the VS Code installed under Windows. The first time this is done a connecting software will be installed so that VS Code can speak to the WSL2 system.
 
-[Happy coding!](/contributing)
+[Happy coding!](/docs/contributing)
 
 ## Making things pretty
 
