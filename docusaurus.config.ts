@@ -1,9 +1,12 @@
 import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import type {Config, PluginModule} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
+import proxyPlugin from "./plugins/proxy-plugin";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+
+const isDev = process.env.NODE_ENV === 'development';
 
 const config: Config = {
   title: 'Zetkin Developer Portal',
@@ -61,6 +64,7 @@ const config: Config = {
         docsPluginId: 'classic',
         config: {
           'core-v1': {
+            proxy: isDev ? 'http://localhost:3000/api' : null,
             specPath: 'api/v1/openapi.json',
             outputDir: 'docs/api/v1/paths',
             showInfoPage: false,
@@ -81,6 +85,7 @@ const config: Config = {
         },
       },
     ],
+    proxyPlugin as PluginModule
   ],
 
   themes: ['docusaurus-theme-openapi-docs'],
