@@ -31,7 +31,14 @@ jobs:
               "title": "Dummy API",
               "version": "1.0.0"
             },
-            "paths": {}
+            "paths": {
+              "/orgs/{org_id}/people": {
+                "get": {
+                  "operationId": "get--orgs-{org_id}-people",
+                  "responses": {}
+                }
+              }
+            }
           }' > openapi.json
 
           # Create directories
