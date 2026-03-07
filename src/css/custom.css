@@ -4,47 +4,182 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+    --ifm-color-primary: #a64f4f;
+    --ifm-color-primary-dark: #8c4545;
+    --ifm-color-primary-darker: #7a3b3b;
+    --ifm-color-primary-darkest: #5a2c2c;
+    --ifm-color-primary-light: #bd4e4e;
+    --ifm-color-primary-lighter: #bc6363;
+    --ifm-color-primary-lightest: #d36b6b;
+
+    --ifm-background-color: #fbfbfb;
+    --ifm-background-surface-color: #ffffff;
+
+    --ifm-font-color-base: #252525;
+    --ifm-heading-color: #252525;
+
+    --ifm-link-color: #3e6cd2;
+    --ifm-link-hover-color: #3559c0;
+
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+    --ifm-navbar-background-color: #ffffff;
+    --ifm-navbar-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+
+    --ifm-menu-color: #000000;
+    --ifm-menu-color-active: #000000;
+    --ifm-menu-color-background-active: rgba(151, 151, 151, 0.08);
+
+    --ifm-hr-border-color: #e0e0e0;
+    --ifm-toc-border-color: #e0e0e0;
+
+    --ifm-button-background-color: #a67070;
+    --ifm-button-color: #ffffff;
+    --ifm-button-border-color: #c1c1c1;
+
+    --ifm-color-success: #1b9e4b;
+    --ifm-color-success-dark: #197c3e;
+
+    --ifm-color-warning: #f3c81c;
+    --ifm-color-warning-dark: #c4880a;
+
+    --ifm-color-danger: #ce3434;
+    --ifm-color-danger-dark: #ad2828;
+
+    --ifm-color-info: #3e6cd2;
+    --ifm-font-family-base: Roboto, system-ui, -apple-system, Segoe UI, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+    --ifm-color-primary: #ed9595;
+    --ifm-color-primary-dark: #c58f8f;
+    --ifm-color-primary-darker: #b88080;
+    --ifm-color-primary-darkest: #a37575;
+    --ifm-color-primary-light: #e39a9a;
+    --ifm-color-primary-lighter: #eac9c9;
+    --ifm-color-primary-lightest: #e6d5d5;
+
+    --ifm-background-color: #000000;
+    --ifm-background-surface-color: #000000;
+
+    --ifm-font-color-base: #ffffff;
+    --ifm-heading-color: #ffffff;
+
+    --ifm-link-color: #22d3ee;
+    --ifm-link-hover-color: #90e9f7;
+
+    --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+
+    --ifm-navbar-background-color: #000000;
+    --ifm-navbar-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.1);
+
+    --ifm-menu-color: #ffffff;
+    --ifm-menu-color-active: #ffffff;
+    --ifm-menu-color-background-active: rgba(168, 168, 168, 0.08);
+
+    --ifm-hr-border-color: #2b2b2b;
+    --ifm-toc-border-color: #2b2b2b;
+
+    --ifm-button-background-color: #535353;
+    --ifm-button-color: #ffffff;
+    --ifm-button-border-color: #c1c1c1;
+
+    --ifm-color-success: #1b9e4b;
+
+    --ifm-color-warning: #f3c81c;
+
+    --ifm-color-danger: #ce3434;
+
+    --ifm-color-info: #3e6cd2;
 }
 
 .docs-wrapper .theme-doc-sidebar-container {
-  position: fixed;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .docs-wrapper main {
-  margin-left: var(--doc-sidebar-width);
+    margin-left: var(--doc-sidebar-width);
 }
 
 .docs-wrapper .menu {
-   overflow-y: auto;
-   max-height: 100%;
+    overflow-y: auto;
+    max-height: 100%;
 }
 
 .docs-wrapper .footer {
-  margin-left: var(--doc-sidebar-width);
+    margin-left: var(--doc-sidebar-width);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.markdown h1:first-child {
+    font-weight: 700;
+}
+
+.button {
+    border-radius: 8px;
+    font-weight: 500;
+    text-transform: none;
+    padding: 8px 16px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.button--primary {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.button--primary:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.button--outline {
+    color: #505050;
+}
+
+.button--outline:hover {
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+[data-theme="dark"] .button--outline {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .button--secondary {
+    --bg-color: #333333;
+    background-color: var(--bg-color);
+    color: #ffffff;
+    border-color: var(--bg-color);
+}
+
+[data-theme="dark"] .button--secondary:hover {
+    --bg-color: #3e3e3e;
+    background-color: var(--bg-color);
+    color: #ffffff;
+    border-color: var(--bg-color);
+}
+
+[data-theme="dark"] .card {
+    border: 1px solid #2e2e2e;
+}
+
+.theme-doc-markdown > p,
+.markdown > p {
+    line-height: 1.7;
+}
+
+pre {
+    border-radius: 8px;
+}
+
+code {
+    border-radius: 4px;
+    font-family: 'Roboto Mono', monospace;
 }
