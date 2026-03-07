@@ -62,3 +62,11 @@
 [data-theme="dark"] .button--outline {
   color: #ffffff;
 }
+
+.openapi-right-panel__container {
+  max-height: unset !important;
+}
+
+.openapi-tabs__schema-container [role="tabpanel"] {
+  height: 500px;
+}
