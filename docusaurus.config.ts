@@ -74,6 +74,7 @@ const config: Config = {
             },
           },
           'core-v2': {
+            proxy: isDev ? 'http://localhost:3000/api2' : null,
             specPath: 'api/v2/openapi.json',
             outputDir: 'docs/api/v2/paths',
             showInfoPage: false,
