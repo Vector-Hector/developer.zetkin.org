@@ -78,8 +78,9 @@ function Card({
         </div>
 
         <div className="card__footer">
-          {links.map((link) => (
+          {links.map((link, index) => (
             <Link
+              key={index}
               className={`button button--${link.variant ?? 'primary'} button--sm margin-right--sm`}
               to={link.link}
             >
