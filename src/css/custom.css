@@ -31,24 +31,26 @@
   --ifm-button-border-color: #c5c5c5;
 }
 
-.docs-wrapper .theme-doc-sidebar-container {
-  position: fixed;
-  height: 100vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+@media (min-width: 997px) {
+  .docs-wrapper .theme-doc-sidebar-container {
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 
-.docs-wrapper:has(.theme-doc-sidebar-container) main {
-  margin-left: var(--doc-sidebar-width);
-}
+  .docs-wrapper:has(.theme-doc-sidebar-container) main {
+    margin-left: var(--doc-sidebar-width);
+  }
 
-.docs-wrapper:has(.theme-doc-sidebar-container) .menu {
-  overflow-y: auto;
-  max-height: 100%;
-}
+  .docs-wrapper:has(.theme-doc-sidebar-container) .menu {
+    overflow-y: auto;
+    max-height: 100%;
+  }
 
-.docs-wrapper:has(.theme-doc-sidebar-container) .footer {
-  margin-left: var(--doc-sidebar-width);
+  .docs-wrapper:has(.theme-doc-sidebar-container) .footer {
+    margin-left: var(--doc-sidebar-width);
+  }
 }
 
 .button--outline {
