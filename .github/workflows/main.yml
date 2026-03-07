@@ -10,11 +10,11 @@ permissions:
 
 jobs:
   lint:
-    uses: ./.github/workflows/reusable-base.yml
+    uses: ./.github/workflows/reuseable-base.yml
     with:
       test-script: lint
 
   check-types:
-    uses: ./.github/workflows/reusable-base.yml
+    uses: ./.github/workflows/reuseable-base.yml
     with:
       test-script: check-types
