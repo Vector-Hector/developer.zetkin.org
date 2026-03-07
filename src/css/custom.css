@@ -43,8 +43,8 @@
 }
 
 .docs-wrapper:has(.theme-doc-sidebar-container) .menu {
-   overflow-y: auto;
-   max-height: 100%;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .docs-wrapper:has(.theme-doc-sidebar-container) .footer {
@@ -59,7 +59,7 @@
   background-color: rgba(200, 200, 200, 0.2);
 }
 
-[data-theme="dark"] .button--outline {
+[data-theme='dark'] .button--outline {
   color: #ffffff;
 }
 
@@ -67,6 +67,6 @@
   max-height: unset !important;
 }
 
-.openapi-tabs__schema-container [role="tabpanel"] {
+.openapi-tabs__schema-container [role='tabpanel'] {
   height: 500px;
 }

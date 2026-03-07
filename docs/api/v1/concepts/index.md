@@ -1,5 +1,5 @@
 ---
-title: "Person views"
+title: 'Person views'
 ---
 
 You can create "Views" through which personal information can be retrieved.

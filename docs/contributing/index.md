@@ -55,7 +55,7 @@ Don't be discouraged if the text makes you feel like you have no idea what is
 going on, these Issues are designed to be introduced by a Zetkin maintainer. Find someone who can explain.
 
 Also, when you find one that you like, tell the others (e.g. in the Slack
-  channel), so that you can get "assigned" to that Issue.
+channel), so that you can get "assigned" to that Issue.
 
 ## Links and resources
 

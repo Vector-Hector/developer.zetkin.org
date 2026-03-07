@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -8,7 +8,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
 
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
@@ -22,13 +22,18 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg margin-right--md"
-            to="/docs/api/v2/getting-started">
+            to="/docs/api/v2/getting-started"
+          >
             Core API v2
           </Link>
 
           <Link
-            className={clsx("button button--outline button--secondary button--lg", styles.heroBannerButtonOutlined)}
-            to="/docs/api/v1/getting-started">
+            className={clsx(
+              'button button--outline button--secondary button--lg',
+              styles.heroBannerButtonOutlined,
+            )}
+            to="/docs/api/v1/getting-started"
+          >
             Core API v1
           </Link>
         </div>
@@ -37,13 +42,7 @@ function HomepageHeader() {
   );
 }
 
-function Section({
-                   title,
-                   children,
-                 }: {
-  title: string;
-  children: ReactNode;
-}) {
+function Section({ title, children }: { children: ReactNode; title: string }) {
   return (
     <section className="margin-vert--xl">
       <div className="container">
@@ -55,17 +54,17 @@ function Section({
 }
 
 function Card({
-                title,
-                description,
-                links,
-              }: {
-  title: string;
+  description,
+  links,
+  title,
+}: {
   description: string;
   links: {
     link: string;
     linkText: string;
-    variant?: "outline" | "primary" | "secondary";
-  }[]
+    variant?: 'outline' | 'primary' | 'secondary';
+  }[];
+  title: string;
 }) {
   return (
     <div className="col col--4 margin-bottom--lg">
@@ -80,7 +79,10 @@ function Card({
 
         <div className="card__footer">
           {links.map((link) => (
-            <Link className={`button button--${link.variant ?? "primary"} button--sm margin-right--sm`} to={link.link}>
+            <Link
+              className={`button button--${link.variant ?? 'primary'} button--sm margin-right--sm`}
+              to={link.link}
+            >
               {link.linkText}
             </Link>
           ))}
@@ -99,37 +101,41 @@ function StartBuilding() {
       </p>
 
       <div className="row">
-
         <Card
-          title="Core API v2"
           description="The latest version of the Zetkin Core API. Recommended for all new integrations and applications."
-          links={[{
-            link: "/docs/api/v2/getting-started",
-            linkText: "Explore v2",
-            variant: "secondary"
-          }]}
+          links={[
+            {
+              link: '/docs/api/v2/getting-started',
+              linkText: 'Explore v2',
+              variant: 'secondary',
+            },
+          ]}
+          title="Core API v2"
         />
 
         <Card
-          title="Core API v1"
           description="Legacy version of the Zetkin Core API used by existing integrations."
-          links={[{
-            link: "/docs/api/v1/getting-started",
-            linkText: "View v1 docs",
-            variant: "secondary"
-          }]}
+          links={[
+            {
+              link: '/docs/api/v1/getting-started',
+              linkText: 'View v1 docs',
+              variant: 'secondary',
+            },
+          ]}
+          title="Core API v1"
         />
 
         <Card
-          title="SDK"
           description="Client libraries and helpers for interacting with Zetkin APIs from applications and scripts."
-          links={[{
-            link: "/docs/sdk",
-            linkText: "Read SDK docs",
-            variant: "secondary"
-          }]}
+          links={[
+            {
+              link: '/docs/sdk',
+              linkText: 'Read SDK docs',
+              variant: 'secondary',
+            },
+          ]}
+          title="SDK"
         />
-
       </div>
     </Section>
   );
@@ -144,41 +150,49 @@ function PlatformComponents() {
 
       <div className="row">
         <Card
-          title="ZUI Design System"
           description="Reusable UI components and design patterns used across Zetkin applications."
-          links={[{
-            link: "https://github.com/zetkin/app.zetkin.org/tree/main/src/zui",
-            linkText: "GitHub",
-            variant: "secondary",
-          }, {
-            link: "https://app.dev.zetkin.org/storybook/index.html",
-            linkText: "Storybook",
-            variant: "outline",
-          }]}
+          links={[
+            {
+              link: 'https://github.com/zetkin/app.zetkin.org/tree/main/src/zui',
+              linkText: 'GitHub',
+              variant: 'secondary',
+            },
+            {
+              link: 'https://app.dev.zetkin.org/storybook/index.html',
+              linkText: 'Storybook',
+              variant: 'outline',
+            },
+          ]}
+          title="ZUI Design System"
         />
 
         <Card
-          title="Lyra Translations"
           description="Translation and localization workflows used to internationalize Zetkin."
-          links={[{
-            link: "https://github.com/zetkin/lyra",
-            linkText: "GitHub",
-            variant: "secondary",
-          }, {
-            link: "https://lyra.zetkin.org",
-            linkText: "Lyra",
-            variant: "outline",
-          }]}
+          links={[
+            {
+              link: 'https://github.com/zetkin/lyra',
+              linkText: 'GitHub',
+              variant: 'secondary',
+            },
+            {
+              link: 'https://lyra.zetkin.org',
+              linkText: 'Lyra',
+              variant: 'outline',
+            },
+          ]}
+          title="Lyra Translations"
         />
 
         <Card
-          title="GitHub"
           description="Explore the open source repositories powering the Zetkin platform."
-          links={[{
-            link: "https://github.com/zetkin",
-            linkText: "View repositories",
-            variant: "secondary",
-          }]}
+          links={[
+            {
+              link: 'https://github.com/zetkin',
+              linkText: 'View repositories',
+              variant: 'secondary',
+            },
+          ]}
+          title="GitHub"
         />
       </div>
     </Section>
@@ -207,7 +221,10 @@ function AboutZetkin() {
             community of organizers, developers and designers.
           </p>
 
-          <Link className="button button--outline button--sm" to={'https://zetkin.org/en'}>
+          <Link
+            className="button button--outline button--sm"
+            to={'https://zetkin.org/en'}
+          >
             Learn more about Zetkin
           </Link>
         </div>
@@ -227,41 +244,63 @@ function DeveloperEnvironment() {
       <p>
         <a
           href="https://app.dev.zetkin.org"
+          rel="noopener noreferrer"
           target="_blank"
-          rel="noopener noreferrer"><strong>app.dev.zetkin.org</strong></a> runs the latest version of the Zetkin
-        platform (Generation 3). You can use the test accounts below to explore
-        the system with different permission levels.
+        >
+          <strong>app.dev.zetkin.org</strong>
+        </a>{' '}
+        runs the latest version of the Zetkin platform (Generation 3). You can
+        use the test accounts below to explore the system with different
+        permission levels.
       </p>
 
       <div className="margin-top--lg">
         <table>
           <thead>
-          <tr>
-            <th>Role / Access</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>SMS Code</th>
-          </tr>
+            <tr>
+              <th>Role / Access</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>SMS Code</th>
+            </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Administrator</td>
-            <td><code>testadmin@example.com</code></td>
-            <td><code>password</code></td>
-            <td><code>999999</code></td>
-          </tr>
-          <tr>
-            <td>Caller</td>
-            <td><code>testcaller@example.com</code></td>
-            <td><code>password</code></td>
-            <td><code>999999</code></td>
-          </tr>
-          <tr>
-            <td>Basic user</td>
-            <td><code>testuser@example.com</code></td>
-            <td><code>password</code></td>
-            <td><code>999999</code></td>
-          </tr>
+            <tr>
+              <td>Administrator</td>
+              <td>
+                <code>testadmin@example.com</code>
+              </td>
+              <td>
+                <code>password</code>
+              </td>
+              <td>
+                <code>999999</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Caller</td>
+              <td>
+                <code>testcaller@example.com</code>
+              </td>
+              <td>
+                <code>password</code>
+              </td>
+              <td>
+                <code>999999</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Basic user</td>
+              <td>
+                <code>testuser@example.com</code>
+              </td>
+              <td>
+                <code>password</code>
+              </td>
+              <td>
+                <code>999999</code>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -272,37 +311,41 @@ function DeveloperEnvironment() {
       </p>
 
       <div>
-        <Link className="button button--secondary button--sm margin-right--sm" to={"https://app.dev.zetkin.org"}>
+        <Link
+          className="button button--secondary button--sm margin-right--sm"
+          to={'https://app.dev.zetkin.org'}
+        >
           Open dev deployment
         </Link>
-        <Link className="button button--outline button--sm" to={"https://github.com/zetkin/app.zetkin.org"}>
+        <Link
+          className="button button--outline button--sm"
+          to={'https://github.com/zetkin/app.zetkin.org'}
+        >
           GitHub
         </Link>
       </div>
-
     </Section>
   );
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
 
   return (
     <Layout
+      description="Developer documentation for the Zetkin organizing platform"
       title={`${siteConfig.title}`}
-      description="Developer documentation for the Zetkin organizing platform">
-      <HomepageHeader/>
+    >
+      <HomepageHeader />
 
       <main>
+        <DeveloperEnvironment />
 
-        <DeveloperEnvironment/>
+        <PlatformComponents />
 
-        <PlatformComponents/>
+        <AboutZetkin />
 
-        <AboutZetkin/>
-
-        <StartBuilding/>
-
+        <StartBuilding />
       </main>
     </Layout>
   );
