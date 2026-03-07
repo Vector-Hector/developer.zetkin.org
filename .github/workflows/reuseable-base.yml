@@ -52,6 +52,29 @@ jobs:
         env:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
+      - name: Generate dummy OpenAPI files and docs
+        run: |
+          # Create a simple dummy openapi.json
+          echo '{
+            "openapi": "3.0.0",
+            "info": {
+              "title": "Dummy API",
+              "version": "1.0.0"
+            },
+            "paths": {}
+          }' > openapi.json
+
+          # Create directories
+          mkdir -p api/v1
+          mkdir -p api/v2
+
+          # Move dummy file into both directories
+          cp openapi.json api/v1/openapi.json
+          cp openapi.json api/v2/openapi.json
+
+          # Run the Docusaurus API docs generation
+          npm run docusaurus gen-api-docs all
+
       - name: Build
         run: ${{ inputs.build-script }}
         if: inputs.build-script
