@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    uses: ./.github/workflows/reusable-base.yml
+    with:
+      test-script: lint
+
+  check-types:
+    uses: ./.github/workflows/reusable-base.yml
+    with:
+      test-script: check-types
