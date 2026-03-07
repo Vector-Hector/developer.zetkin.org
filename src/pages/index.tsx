@@ -27,7 +27,7 @@ function HomepageHeader() {
           </Link>
 
           <Link
-            className="button button--outline button--secondary button--lg"
+            className={clsx("button button--outline button--secondary button--lg", styles.heroBannerButtonOutlined)}
             to="/docs/api/v1/getting-started">
             Core API v1
           </Link>
@@ -64,6 +64,7 @@ function Card({
   links: {
     link: string;
     linkText: string;
+    variant?: "outline" | "primary" | "secondary";
   }[]
 }) {
   return (
@@ -79,7 +80,7 @@ function Card({
 
         <div className="card__footer">
           {links.map((link) => (
-            <Link className="button button--primary button--sm margin-right--sm" to={link.link}>
+            <Link className={`button button--${link.variant ?? "primary"} button--sm margin-right--sm`} to={link.link}>
               {link.linkText}
             </Link>
           ))}
@@ -104,7 +105,8 @@ function StartBuilding() {
           description="The latest version of the Zetkin Core API. Recommended for all new integrations and applications."
           links={[{
             link: "/docs/api/v2/getting-started",
-            linkText: "Explore v2"
+            linkText: "Explore v2",
+            variant: "secondary"
           }]}
         />
 
@@ -113,7 +115,8 @@ function StartBuilding() {
           description="Legacy version of the Zetkin Core API used by existing integrations."
           links={[{
             link: "/docs/api/v1/getting-started",
-            linkText: "View v1 docs"
+            linkText: "View v1 docs",
+            variant: "secondary"
           }]}
         />
 
@@ -122,7 +125,8 @@ function StartBuilding() {
           description="Client libraries and helpers for interacting with Zetkin APIs from applications and scripts."
           links={[{
             link: "/docs/sdk",
-            linkText: "Read SDK docs"
+            linkText: "Read SDK docs",
+            variant: "secondary"
           }]}
         />
 
@@ -144,10 +148,12 @@ function PlatformComponents() {
           description="Reusable UI components and design patterns used across Zetkin applications."
           links={[{
             link: "https://github.com/zetkin/app.zetkin.org/tree/main/src/zui",
-            linkText: "GitHub"
+            linkText: "GitHub",
+            variant: "secondary",
           }, {
             link: "https://app.dev.zetkin.org/storybook/index.html",
-            linkText: "Storybook"
+            linkText: "Storybook",
+            variant: "outline",
           }]}
         />
 
@@ -156,10 +162,12 @@ function PlatformComponents() {
           description="Translation and localization workflows used to internationalize Zetkin."
           links={[{
             link: "https://github.com/zetkin/lyra",
-            linkText: "GitHub"
+            linkText: "GitHub",
+            variant: "secondary",
           }, {
             link: "https://lyra.zetkin.org",
-            linkText: "Lyra"
+            linkText: "Lyra",
+            variant: "outline",
           }]}
         />
 
@@ -168,7 +176,8 @@ function PlatformComponents() {
           description="Explore the open source repositories powering the Zetkin platform."
           links={[{
             link: "https://github.com/zetkin",
-            linkText: "View repositories"
+            linkText: "View repositories",
+            variant: "secondary",
           }]}
         />
       </div>
@@ -198,7 +207,7 @@ function AboutZetkin() {
             community of organizers, developers and designers.
           </p>
 
-          <Link className="button button--primary button--sm" to={'https://zetkin.org/en'}>
+          <Link className="button button--outline button--sm" to={'https://zetkin.org/en'}>
             Learn more about Zetkin
           </Link>
         </div>
@@ -263,10 +272,10 @@ function DeveloperEnvironment() {
       </p>
 
       <div>
-        <Link className="button button--primary button--sm margin-right--sm" to={"https://app.dev.zetkin.org"}>
+        <Link className="button button--secondary button--sm margin-right--sm" to={"https://app.dev.zetkin.org"}>
           Open dev deployment
         </Link>
-        <Link className="button button--primary button--sm" to={"https://github.com/zetkin/app.zetkin.org"}>
+        <Link className="button button--outline button--sm" to={"https://github.com/zetkin/app.zetkin.org"}>
           GitHub
         </Link>
       </div>
