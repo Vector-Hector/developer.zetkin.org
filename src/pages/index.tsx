@@ -295,13 +295,13 @@ export default function Home(): ReactNode {
 
       <main>
 
-        <StartBuilding/>
-
         <DeveloperEnvironment/>
 
         <PlatformComponents/>
 
         <AboutZetkin/>
+
+        <StartBuilding/>
 
       </main>
     </Layout>
