@@ -44,10 +44,14 @@ jobs:
 
           # Run the Docusaurus API docs generation
           npm run docusaurus gen-api-docs all
+        env:
+          NODE_ENV: production
 
       - name: Build site
         run: |
           npm run build
+        env:
+          NODE_ENV: production
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

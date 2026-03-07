@@ -64,7 +64,7 @@ const config: Config = {
         docsPluginId: 'classic',
         config: {
           'core-v1': {
-            proxy: isDev ? 'http://localhost:3000/api' : null,
+            proxy: isDev ? 'http://localhost:3000/api' : undefined,
             specPath: 'api/v1/openapi.json',
             outputDir: 'docs/api/v1/paths',
             showInfoPage: false,
@@ -74,7 +74,7 @@ const config: Config = {
             },
           },
           'core-v2': {
-            proxy: isDev ? 'http://localhost:3000/api2' : null,
+            proxy: isDev ? 'http://localhost:3000/api2' : undefined,
             specPath: 'api/v2/openapi.json',
             outputDir: 'docs/api/v2/paths',
             showInfoPage: false,
