@@ -38,16 +38,16 @@
   overflow-x: hidden;
 }
 
-.docs-wrapper main {
+.docs-wrapper:has(.theme-doc-sidebar-container) main {
   margin-left: var(--doc-sidebar-width);
 }
 
-.docs-wrapper .menu {
+.docs-wrapper:has(.theme-doc-sidebar-container) .menu {
    overflow-y: auto;
    max-height: 100%;
 }
 
-.docs-wrapper .footer {
+.docs-wrapper:has(.theme-doc-sidebar-container) .footer {
   margin-left: var(--doc-sidebar-width);
 }
 
