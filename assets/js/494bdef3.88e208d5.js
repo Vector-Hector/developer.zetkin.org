@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkdocusaurus=globalThis.webpackChunkdocusaurus||[]).push([[440],{99447(s,u,a){a.r(u),a.d(u,{default:()=>o});var r=a(56347),c=a(74848);function o(){return(0,c.jsx)(r.rd,{to:"/docs/api/v1/smart-search"})}}}]);
