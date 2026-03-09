@@ -4,31 +4,23 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 import proxyPlugin from './plugins/proxy-plugin';
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const isDev = process.env.NODE_ENV === 'development';
 
 const config: Config = {
   baseUrl: '/',
   favicon: 'img/logo.svg',
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
 
-  // Set the production url of your site here
   onBrokenLinks: 'throw',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   organizationName: 'zetkin',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   plugins: [
     [
       'docusaurus-plugin-openapi-docs',
@@ -60,7 +52,7 @@ const config: Config = {
       },
     ],
     proxyPlugin as PluginModule,
-  ], // Usually your GitHub org/user name.
+  ],
   presets: [
     [
       'classic',
@@ -75,13 +67,10 @@ const config: Config = {
         },
       } satisfies Preset.Options,
     ],
-  ], // Usually your repo name.
+  ],
 
   projectName: 'developer.zetkin.org',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   tagline: 'Make participation simple for everyone',
 
   themeConfig: {
