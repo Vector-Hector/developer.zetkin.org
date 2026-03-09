@@ -1,5 +1,6 @@
 ---
 title: Contributing
+description: Learn how to contribute to the Zetkin platform. This guide covers the development workflow, code standards, and how to get started.
 layout: default
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Zetkin SDK
+description: Official JavaScript SDK for the Zetkin API. Learn how to authenticate, make requests, and build integrations with the Zetkin platform.
 ---
 
 ## At a glance

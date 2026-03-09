@@ -1,5 +1,6 @@
 ---
 title: Development using Windows
+description: Set up a Zetkin development environment on Windows using WSL2, Visual Studio Code, and Docker.
 layout: default
 ---
 

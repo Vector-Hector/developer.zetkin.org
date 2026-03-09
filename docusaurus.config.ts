@@ -92,6 +92,31 @@ const config: Config = {
   themes: ['docusaurus-theme-openapi-docs'],
 
   themeConfig: {
+    metadata: [
+      {
+        name: 'description',
+        content:
+          'Developer documentation for the Zetkin organizing platform. Includes API references, SDK guides, and integration tools for building with Zetkin.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'Zetkin, API, SDK, developer documentation, organizing platform, activism, campaign management',
+      },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:title',
+        content: 'Zetkin Developer Portal',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          'Developer documentation for the Zetkin organizing platform. Build integrations with our APIs and SDKs.',
+      },
+    ],
     image: 'img/cover.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
