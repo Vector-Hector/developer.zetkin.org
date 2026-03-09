@@ -1,155 +1,212 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config, PluginModule} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config, PluginModule } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
-import proxyPlugin from "./plugins/proxy-plugin";
+
+import proxyPlugin from './plugins/proxy-plugin';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const isDev = process.env.NODE_ENV === 'development';
 
 const config: Config = {
-  title: 'Zetkin Developer Portal',
-  tagline: 'Make participation simple for everyone',
+  baseUrl: '/',
   favicon: 'img/logo.svg',
-
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
 
-  // Set the production url of your site here
-  url: 'https://developer.zetkin.org',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'zetkin', // Usually your GitHub org/user name.
-  projectName: 'developer.zetkin.org', // Usually your repo name.
-
-  onBrokenLinks: 'throw',
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
   },
 
+  // Set the production url of your site here
+  onBrokenLinks: 'throw',
+  // Set the /<baseUrl>/ pathname under which your site is served
+  // For GitHub pages deployment, it is often '/<projectName>/'
+  organizationName: 'zetkin',
+
+  // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
+  plugins: [
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        config: {
+          'core-v1': {
+            outputDir: 'docs/api/v1/paths',
+            proxy: isDev ? 'http://localhost:3000/api' : undefined,
+            showInfoPage: false,
+            sidebarOptions: {
+              categoryLinkSource: 'info',
+              groupPathsBy: 'tag',
+            },
+            specPath: 'api/v1/openapi.json',
+          },
+          'core-v2': {
+            outputDir: 'docs/api/v2/paths',
+            proxy: isDev ? 'http://localhost:3000/api2' : undefined,
+            showInfoPage: false,
+            sidebarOptions: {
+              categoryLinkSource: 'info',
+              groupPathsBy: 'tag',
+            },
+            specPath: 'api/v2/openapi.json',
+          },
+        },
+        docsPluginId: 'classic',
+        id: 'openapi',
+      },
+    ],
+    proxyPlugin as PluginModule,
+  ], // Usually your GitHub org/user name.
   presets: [
     [
       'classic',
       {
         docs: {
-          sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/zetkin/developer.zetkin.org/tree/master',
           docItemComponent: '@theme/ApiItem',
+          editUrl: 'https://github.com/zetkin/developer.zetkin.org/tree/master',
+          sidebarPath: './sidebars.ts',
         },
         theme: {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
     ],
-  ],
+  ], // Usually your repo name.
 
-  plugins: [
-    [
-      'docusaurus-plugin-openapi-docs',
-      {
-        id: 'openapi',
-        docsPluginId: 'classic',
-        config: {
-          'core-v1': {
-            proxy: isDev ? 'http://localhost:3000/api' : undefined,
-            specPath: 'api/v1/openapi.json',
-            outputDir: 'docs/api/v1/paths',
-            showInfoPage: false,
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'info',
-            },
-          },
-          'core-v2': {
-            proxy: isDev ? 'http://localhost:3000/api2' : undefined,
-            specPath: 'api/v2/openapi.json',
-            outputDir: 'docs/api/v2/paths',
-            showInfoPage: false,
-            sidebarOptions: {
-              groupPathsBy: 'tag',
-              categoryLinkSource: 'info',
-            },
-          },
-        },
-      },
-    ],
-    proxyPlugin as PluginModule
-  ],
+  projectName: 'developer.zetkin.org',
 
-  themes: ['docusaurus-theme-openapi-docs'],
+  // Even if you don't use internationalization, you can use this field to set
+  // useful metadata like html lang. For example, if your site is Chinese, you
+  // may want to replace "en" with "zh-Hans".
+  tagline: 'Make participation simple for everyone',
 
   themeConfig: {
-    metadata: [
-      {
-        name: 'description',
-        content:
-          'Developer documentation for the Zetkin organizing platform. Includes API references, SDK guides, and integration tools for building with Zetkin.',
-      },
-      {
-        name: 'keywords',
-        content:
-          'Zetkin, API, SDK, developer documentation, organizing platform, activism, campaign management',
-      },
-      {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        name: 'twitter:title',
-        content: 'Zetkin Developer Portal',
-      },
-      {
-        name: 'twitter:description',
-        content:
-          'Developer documentation for the Zetkin organizing platform. Build integrations with our APIs and SDKs.',
-      },
-    ],
-    image: 'img/cover.jpg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
-    navbar: {
-      title: 'Zetkin',
-      logo: {
-        alt: 'Zetkin Logo',
-        src: 'img/logo.svg',
+    footer: {
+      copyright: `Copyright © ${new Date().getFullYear()} Zetkin Foundation. Built with Docusaurus.`,
+      links: [
+        {
+          items: [
+            {
+              href: 'https://www.linkedin.com/company/zetkin-foundation',
+              label: 'LinkedIn',
+            },
+            {
+              href: 'https://www.facebook.com/zetkinfoundation',
+              label: 'Facebook',
+            },
+            {
+              href: 'https://www.instagram.com/zetkinfoundation/',
+              label: 'Instagram',
+            },
+            {
+              href: 'https://www.youtube.com/@zetkinfoundation',
+              label: 'YouTube',
+            },
+          ],
+          title: 'Community',
+        },
+        {
+          items: [
+            {
+              href: 'https://github.com/zetkin/app.zetkin.org',
+              label: 'GitHub',
+            },
+          ],
+          title: 'More',
+        },
+      ],
+      style: 'dark',
+    },
+    image: 'img/cover.jpg',
+    languageTabs: [
+      {
+        highlight: 'javascript',
+        language: 'javascript',
+        logoClass: 'javascript',
+        variant: 'fetch',
       },
+      {
+        highlight: 'javascript',
+        language: 'nodejs',
+        logoClass: 'nodejs',
+        variant: 'axios',
+      },
+      {
+        highlight: 'python',
+        language: 'python',
+        logoClass: 'python',
+        variant: 'requests',
+      },
+      {
+        highlight: 'bash',
+        language: 'curl',
+        logoClass: 'bash',
+      },
+      {
+        highlight: 'go',
+        language: 'go',
+        logoClass: 'go',
+      },
+    ],
+    metadata: [
+      {
+        content:
+          'Developer documentation for the Zetkin organizing platform. Includes API references, SDK guides, and integration tools for building with Zetkin.',
+        name: 'description',
+      },
+      {
+        content:
+          'Zetkin, API, SDK, developer documentation, organizing platform, activism, campaign management',
+        name: 'keywords',
+      },
+      {
+        content: 'summary_large_image',
+        name: 'twitter:card',
+      },
+      {
+        content: 'Zetkin Developer Portal',
+        name: 'twitter:title',
+      },
+      {
+        content:
+          'Developer documentation for the Zetkin organizing platform. Build integrations with our APIs and SDKs.',
+        name: 'twitter:description',
+      },
+    ],
+    navbar: {
       items: [
         {
-          position: 'left',
+          href: '/docs/sdk',
           label: 'SDK',
-          href: '/docs/sdk'
-        },
-        {
-          type: 'dropdown',
           position: 'left',
-          label: 'API',
-          items: [{
-            label: 'Core v1',
-            to: '/docs/api/v1/getting-started'
-          }, {
-            label: 'Core v2',
-            to: '/docs/api/v2/getting-started'
-          }]
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'contributingSidebar',
-          position: 'right',
+          items: [
+            {
+              label: 'Core v1',
+              to: '/docs/api/v1/getting-started',
+            },
+            {
+              label: 'Core v2',
+              to: '/docs/api/v2/getting-started',
+            },
+          ],
+          label: 'API',
+          position: 'left',
+          type: 'dropdown',
+        },
+        {
           label: 'Contributing',
+          position: 'right',
+          sidebarId: 'contributingSidebar',
+          type: 'docSidebar',
         },
         {
           href: 'https://github.com/zetkin/app.zetkin.org',
@@ -157,78 +214,23 @@ const config: Config = {
           position: 'right',
         },
       ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'LinkedIn',
-              href: 'https://www.linkedin.com/company/zetkin-foundation',
-            },
-            {
-              label: 'Facebook',
-              href: 'https://www.facebook.com/zetkinfoundation',
-            },
-            {
-              label: 'Instagram',
-              href: 'https://www.instagram.com/zetkinfoundation/',
-            },
-            {
-              label: 'YouTube',
-              href: 'https://www.youtube.com/@zetkinfoundation',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/zetkin/app.zetkin.org',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Zetkin Foundation. Built with Docusaurus.`,
+      logo: {
+        alt: 'Zetkin Logo',
+        src: 'img/logo.svg',
+      },
+      title: 'Zetkin',
     },
     prism: {
-      theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      theme: prismThemes.github,
     },
-    languageTabs: [
-      {
-        language: "javascript",
-        highlight: "javascript",
-        logoClass: "javascript",
-        variant: "fetch",
-      },
-      {
-        language: "nodejs",
-        highlight: "javascript",
-        logoClass: "nodejs",
-        variant: "axios",
-      },
-      {
-        language: "python",
-        highlight: "python",
-        logoClass: "python",
-        variant: "requests",
-      },
-      {
-        language: "curl",
-        highlight: "bash",
-        logoClass: "bash",
-      },
-      {
-        language: "go",
-        highlight: "go",
-        logoClass: "go",
-      },
-    ],
   } satisfies Preset.ThemeConfig,
+
+  themes: ['docusaurus-theme-openapi-docs'],
+
+  title: 'Zetkin Developer Portal',
+
+  url: 'https://developer.zetkin.org',
 };
 
 export default config;
