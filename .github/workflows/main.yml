@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
 
 permissions:
@@ -10,11 +10,11 @@ permissions:
 
 jobs:
   lint:
-    uses: ./.github/workflows/reuseable-base.yml
+    uses: ./.github/workflows/reusable-base.yml
     with:
       test-script: lint
 
   check-types:
-    uses: ./.github/workflows/reuseable-base.yml
+    uses: ./.github/workflows/reusable-base.yml
     with:
       test-script: check-types
