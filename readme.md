@@ -26,7 +26,7 @@ mv openapiV2.json api/v2/openapi.json
 Generate api docs from your openapi specs:
 
 ```shell
-npm run docusaurus gen-api-docs all
+npm run openapi-build
 ```
 
 Run the development server:

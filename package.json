@@ -16,7 +16,8 @@
     "lint:eslint": "eslint src plugins docusaurus.config.ts",
     "lint:prettier": "prettier --check src plugins docusaurus.config.ts",
     "lint": "run-p lint:*",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "openapi-build": "npm run docusaurus clean-api-docs all && npm run docusaurus gen-api-docs all"
   },
   "dependencies": {
     "@docusaurus/core": "3.9.2",
