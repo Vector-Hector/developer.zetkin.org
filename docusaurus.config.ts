@@ -26,7 +26,7 @@ const config: Config = {
       'docusaurus-plugin-openapi-docs',
       {
         config: {
-          'core-v1': {
+          'api-v1': {
             outputDir: 'docs/api/v1/paths',
             proxy: isDev ? 'http://localhost:3000/api' : undefined,
             showInfoPage: false,
@@ -36,7 +36,7 @@ const config: Config = {
             },
             specPath: 'api/v1/openapi.json',
           },
-          'core-v2': {
+          'api-v2': {
             outputDir: 'docs/api/v2/paths',
             proxy: isDev ? 'http://localhost:3000/api2' : undefined,
             showInfoPage: false,
@@ -179,11 +179,11 @@ const config: Config = {
         {
           items: [
             {
-              label: 'Core v1',
+              label: 'API v1',
               to: '/docs/api/v1/getting-started',
             },
             {
-              label: 'Core v2',
+              label: 'API v2',
               to: '/docs/api/v2/getting-started',
             },
           ],

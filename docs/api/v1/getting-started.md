@@ -1,4 +1,4 @@
-# Core v1
+# API v1
 
 Here, we explain concepts in the Zetkin Platform API.
 

@@ -24,7 +24,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg margin-right--md"
             to="/docs/api/v2/getting-started"
           >
-            Core API v2
+            API v2
           </Link>
 
           <Link
@@ -34,7 +34,7 @@ function HomepageHeader() {
             )}
             to="/docs/api/v1/getting-started"
           >
-            Core API v1
+            API v1
           </Link>
         </div>
       </div>
@@ -103,7 +103,7 @@ function StartBuilding() {
 
       <div className="row">
         <Card
-          description="The latest version of the Zetkin Core API. Recommended for all new integrations and applications."
+          description="The latest version of the Zetkin API. Recommended for all new integrations and applications."
           links={[
             {
               link: '/docs/api/v2/getting-started',
@@ -111,11 +111,11 @@ function StartBuilding() {
               variant: 'secondary',
             },
           ]}
-          title="Core API v2"
+          title="API v2"
         />
 
         <Card
-          description="Legacy version of the Zetkin Core API used by existing integrations."
+          description="Legacy version of the Zetkin API used by existing integrations."
           links={[
             {
               link: '/docs/api/v1/getting-started',
@@ -123,7 +123,7 @@ function StartBuilding() {
               variant: 'secondary',
             },
           ]}
-          title="Core API v1"
+          title="API v1"
         />
 
         <Card
