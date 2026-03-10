@@ -69,6 +69,8 @@
   max-height: unset !important;
 }
 
-.openapi-explorer__response-container .openapi-tabs__schema-container [role='tabpanel'] {
+.openapi-explorer__response-container
+  .openapi-tabs__schema-container
+  [role='tabpanel'] {
   height: 500px;
 }
