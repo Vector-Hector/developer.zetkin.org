@@ -83,6 +83,10 @@ const config: Config = {
         {
           items: [
             {
+              href: 'https://zetkin.org/en',
+              label: 'Website',
+            },
+            {
               href: 'https://www.linkedin.com/company/zetkin-foundation',
               label: 'LinkedIn',
             },
@@ -104,8 +108,12 @@ const config: Config = {
         {
           items: [
             {
-              href: 'https://github.com/zetkin/app.zetkin.org',
+              href: 'https://github.com/zetkin',
               label: 'GitHub',
+            },
+            {
+              href: 'https://github.com/zetkin/developer.zetkin.org',
+              label: 'Edit this page',
             },
           ],
           title: 'More',
