@@ -31,8 +31,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node_version: ['22']
-        os: ['ubuntu-latest']
+        node_version: [ '22' ]
+        os: [ 'ubuntu-latest' ]
 
     steps:
       - name: Checkout code
@@ -65,12 +65,12 @@ jobs:
           }' > openapi.json
 
           # Create directories
-          mkdir -p api/v1
-          mkdir -p api/v2
+          mkdir -p static/spec/v1
+          mkdir -p static/spec/v2
 
           # Move dummy file into both directories
-          cp openapi.json api/v1/openapi.json
-          cp openapi.json api/v2/openapi.json
+          cp openapi.json static/spec/v1/openapi.json
+          cp openapi.json static/spec/v2/openapi.json
 
           # Run the Docusaurus API docs generation
           npm run docusaurus gen-api-docs all
