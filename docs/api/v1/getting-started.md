@@ -12,3 +12,7 @@ to `/orgs/1/people?p=2&pp=20`, where
 
 - p: Page. The requested page index.
 - pp: Per page. Number of items per page.
+
+### OpenAPI spec
+
+You can download the full spec file [here](/spec/v1/openapi.json).

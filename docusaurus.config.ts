@@ -34,7 +34,7 @@ const config: Config = {
               categoryLinkSource: 'info',
               groupPathsBy: 'tag',
             },
-            specPath: 'api/v1/openapi.json',
+            specPath: 'static/spec/v1/openapi.json',
           },
           'api-v2': {
             outputDir: 'docs/api/v2/paths',
@@ -44,7 +44,7 @@ const config: Config = {
               categoryLinkSource: 'info',
               groupPathsBy: 'tag',
             },
-            specPath: 'api/v2/openapi.json',
+            specPath: 'static/spec/v2/openapi.json',
           },
         },
         docsPluginId: 'classic',

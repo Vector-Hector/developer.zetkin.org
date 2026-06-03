@@ -21,6 +21,6 @@ yarn-error.log*
 
 .idea
 
-api/**
+static/spec/**
 
 docs/api/**/paths/**
