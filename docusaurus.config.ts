@@ -206,7 +206,7 @@ const config: Config = {
           type: 'docSidebar',
         },
         {
-          href: 'https://github.com/zetkin/app.zetkin.org',
+          href: 'https://github.com/zetkin',
           label: 'GitHub',
           position: 'right',
         },
