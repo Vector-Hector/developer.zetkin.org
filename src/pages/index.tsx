@@ -329,6 +329,37 @@ function DeveloperEnvironment() {
   );
 }
 
+function OpenApiSpecDownload() {
+  return (
+    <Section title="Looking for specs?">
+      <div className="row">
+        <div className="col col--8">
+          <p>Here you can also find direct downloads of the OpenAPI specs:</p>
+
+          <div>
+            <Link
+              className="button button--secondary button--sm margin-right--sm"
+              rel={'noopener noreferrer nofollow'}
+              target={'_blank'}
+              to={'/spec/v2/openapi.json'}
+            >
+              Download API v2 spec
+            </Link>
+            <Link
+              className="button button--outline button--sm"
+              rel={'noopener noreferrer nofollow'}
+              target={'_blank'}
+              to={'/spec/v1/openapi.json'}
+            >
+              Download API v1 spec
+            </Link>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
 
@@ -347,6 +378,8 @@ export default function Home(): ReactNode {
         <AboutZetkin />
 
         <StartBuilding />
+
+        <OpenApiSpecDownload />
       </main>
     </Layout>
   );
