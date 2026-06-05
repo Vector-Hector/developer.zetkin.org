@@ -13,7 +13,7 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "lint:eslint": "eslint src plugins docusaurus.config.ts",
-    "lint:prettier": "prettier --check src plugins docusaurus.config.ts",
+    "lint:prettier": "prettier --check src plugins docusaurus.config.ts static/spec",
     "lint": "run-p lint:*",
     "check-types": "tsc --noEmit",
     "openapi-build": "npm run docusaurus clean-api-docs all && npm run docusaurus gen-api-docs all"
