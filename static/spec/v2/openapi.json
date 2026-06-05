@@ -1,0 +1,4506 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "Zetkin Core v2", "version": "2.0.0" },
+  "paths": {
+    "/session": {
+      "get": {
+        "tags": ["auth"],
+        "summary": "Get Session",
+        "description": "Get information about the session of the currently logged in user.",
+        "operationId": "get_session_session_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "integer" }, { "type": "null" }],
+              "title": "Org Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_SessionDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/users": {
+      "get": {
+        "summary": "List Users",
+        "operationId": "list_users_orgs__org_id__users_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_ConnectedUserDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/users/{user_id}": {
+      "get": {
+        "summary": "Get User",
+        "operationId": "get_user_orgs__org_id__users__user_id__get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "User Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_ConnectedUserDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/locations": {
+      "get": {
+        "summary": "List Locations",
+        "operationId": "list_locations_orgs__org_id__locations_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "within_boundary",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Within Boundary"
+            }
+          },
+          {
+            "name": "within_areas",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Within Areas"
+            }
+          },
+          {
+            "name": "buffer_meters",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "integer" }, { "type": "null" }],
+              "title": "Buffer Meters"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/LocationType" },
+                { "type": "null" }
+              ],
+              "title": "Type"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_LocationDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Location",
+        "operationId": "create_location_orgs__org_id__locations_post",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LocationDefPost" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_LocationDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/locations/{location_id}": {
+      "get": {
+        "summary": "Get Location",
+        "operationId": "get_location_orgs__org_id__locations__location_id__get",
+        "parameters": [
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_LocationDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Location",
+        "operationId": "update_location_orgs__org_id__locations__location_id__patch",
+        "parameters": [
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LocationDefPatch" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_LocationDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Location",
+        "operationId": "delete_location_orgs__org_id__locations__location_id__delete",
+        "parameters": [
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/locations/{location_id}/households": {
+      "get": {
+        "summary": "List Location Households",
+        "operationId": "list_location_households_orgs__org_id__locations__location_id__households_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_HouseholdDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Location Household",
+        "operationId": "create_location_household_orgs__org_id__locations__location_id__households_post",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/HouseholdDefPost" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_HouseholdDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/locations/{location_id}/households/{household_id}": {
+      "get": {
+        "summary": "Get Location Household",
+        "operationId": "get_location_household_orgs__org_id__locations__location_id__households__household_id__get",
+        "parameters": [
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_HouseholdDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Location Household",
+        "operationId": "update_location_household_orgs__org_id__locations__location_id__households__household_id__patch",
+        "parameters": [
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/HouseholdDefPatch" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_HouseholdDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Location Household",
+        "operationId": "delete_location_household_orgs__org_id__locations__location_id__households__household_id__delete",
+        "parameters": [
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/areas": {
+      "get": {
+        "tags": ["areas"],
+        "summary": "List Areas",
+        "operationId": "list_areas_orgs__org_id__areas_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AreaDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["areas"],
+        "summary": "Create Area",
+        "operationId": "create_area_orgs__org_id__areas_post",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AreaDefPost" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/areas/{area_id}": {
+      "get": {
+        "tags": ["areas"],
+        "summary": "Get Area",
+        "operationId": "get_area_orgs__org_id__areas__area_id__get",
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["areas"],
+        "summary": "Update Area",
+        "operationId": "update_area_orgs__org_id__areas__area_id__patch",
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AreaDefPatch" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["areas"],
+        "summary": "Delete Area",
+        "operationId": "delete_area_orgs__org_id__areas__area_id__delete",
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/areas/{area_id}/locations": {
+      "get": {
+        "tags": ["areas"],
+        "summary": "List Area Locations",
+        "operationId": "list_area_locations_orgs__org_id__areas__area_id__locations_get",
+        "parameters": [
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "within_boundary",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Within Boundary"
+            }
+          },
+          {
+            "name": "within_areas",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Within Areas"
+            }
+          },
+          {
+            "name": "buffer_meters",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "integer" }, { "type": "null" }],
+              "title": "Buffer Meters"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/LocationType" },
+                { "type": "null" }
+              ],
+              "title": "Type"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_LocationDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/projects/{project_id}/area_assignments": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List Area Assignments",
+        "operationId": "list_area_assignments_orgs__org_id__projects__project_id__area_assignments_get",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Project Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AreaAssignmentDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["area_assignments"],
+        "summary": "Create Area Assignment",
+        "operationId": "create_area_assignment_orgs__org_id__projects__project_id__area_assignments_post",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Project Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AreaAssignmentDefPost" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaAssignmentDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List Area Assignments",
+        "operationId": "list_area_assignments_orgs__org_id__area_assignments_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AreaAssignmentDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "Get Area Assignment",
+        "operationId": "get_area_assignment_orgs__org_id__area_assignments__assignment_id__get",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaAssignmentDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["area_assignments"],
+        "summary": "Update Area Assignment",
+        "operationId": "update_area_assignment_orgs__org_id__area_assignments__assignment_id__patch",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AreaAssignmentDefPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaAssignmentDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["area_assignments"],
+        "summary": "Delete Area Assignment",
+        "operationId": "delete_area_assignment_orgs__org_id__area_assignments__assignment_id__delete",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{area_assignment_id}/assignees": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List Area Assignees",
+        "operationId": "list_area_assignees_orgs__org_id__area_assignments__area_assignment_id__assignees_get",
+        "parameters": [
+          {
+            "name": "area_assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Assignment Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AreaAssigneeDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{area_assignment_id}/areas": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List Assignment Areas",
+        "operationId": "list_assignment_areas_orgs__org_id__area_assignments__area_assignment_id__areas_get",
+        "parameters": [
+          {
+            "name": "area_assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Assignment Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AreaDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/areas/{area_id}/assignees/{user_id}": {
+      "put": {
+        "tags": ["area_assignments"],
+        "summary": "Add Assignment Area",
+        "operationId": "add_assignment_area_orgs__org_id__area_assignments__assignment_id__areas__area_id__assignees__user_id__put",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Id" }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "User Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaAssigneeDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["area_assignments"],
+        "summary": "Remove Assignment Area",
+        "operationId": "remove_assignment_area_orgs__org_id__area_assignments__assignment_id__areas__area_id__assignees__user_id__delete",
+        "parameters": [
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "area_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Area Id" }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "User Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/metrics": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List Area Assignment Metrics",
+        "operationId": "list_area_assignment_metrics_orgs__org_id__area_assignments__assignment_id__metrics_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AssignmentMetricDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["area_assignments"],
+        "summary": "Create Area Assignment Metric",
+        "operationId": "create_area_assignment_metric_orgs__org_id__area_assignments__assignment_id__metrics_post",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignmentMetricDefPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AssignmentMetricDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/metrics/{metric_id}": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "Get Area Assignment Metric",
+        "operationId": "get_area_assignment_metric_orgs__org_id__area_assignments__assignment_id__metrics__metric_id__get",
+        "parameters": [
+          {
+            "name": "metric_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Metric Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AssignmentMetricDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["area_assignments"],
+        "summary": "Update Area Assignment Metric",
+        "operationId": "update_area_assignment_metric_orgs__org_id__area_assignments__assignment_id__metrics__metric_id__patch",
+        "parameters": [
+          {
+            "name": "metric_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Metric Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignmentMetricDefPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AssignmentMetricDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["area_assignments"],
+        "summary": "Delete Area Assignment Metric",
+        "operationId": "delete_area_assignment_metric_orgs__org_id__area_assignments__assignment_id__metrics__metric_id__delete",
+        "parameters": [
+          {
+            "name": "metric_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Metric Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/area_assignments": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List User Area Assignments",
+        "operationId": "list_user_area_assignments_users__user_id__area_assignments_get",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "anyOf": [
+                { "type": "integer" },
+                { "enum": ["me"], "const": "me", "type": "string" }
+              ],
+              "title": "User Id"
+            }
+          },
+          {
+            "name": "org_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "integer" }, { "type": "null" }],
+              "title": "Org Id"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AreaAssignmentDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/locations/{location_id}/visits": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List Location Visits",
+        "operationId": "list_location_visits_orgs__org_id__area_assignments__assignment_id__locations__location_id__visits_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_LocationVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["area_assignments"],
+        "summary": "Create Location Visit",
+        "operationId": "create_location_visit_orgs__org_id__area_assignments__assignment_id__locations__location_id__visits_post",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  { "$ref": "#/components/schemas/LocationVisitDefPost" },
+                  { "$ref": "#/components/schemas/LocationVisitDefPatch" }
+                ],
+                "title": "Data"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_LocationVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/locations/{location_id}/visits/{visit_id}": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "Read Location Visit",
+        "operationId": "read_location_visit_orgs__org_id__area_assignments__assignment_id__locations__location_id__visits__visit_id__get",
+        "parameters": [
+          {
+            "name": "visit_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Visit Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_LocationVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["area_assignments"],
+        "summary": "Update Location Visit",
+        "operationId": "update_location_visit_orgs__org_id__area_assignments__assignment_id__locations__location_id__visits__visit_id__patch",
+        "parameters": [
+          {
+            "name": "visit_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Visit Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  { "$ref": "#/components/schemas/LocationVisitDefPost" },
+                  { "$ref": "#/components/schemas/LocationVisitDefPatch" }
+                ],
+                "title": "Data"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_LocationVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["area_assignments"],
+        "summary": "Delete Location Visit",
+        "operationId": "delete_location_visit_orgs__org_id__area_assignments__assignment_id__locations__location_id__visits__visit_id__delete",
+        "parameters": [
+          {
+            "name": "visit_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Visit Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_LocationVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/households/{household_id}/visits": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "Get Household Visits",
+        "operationId": "get_household_visits_orgs__org_id__area_assignments__assignment_id__households__household_id__visits_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_HouseholdVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["area_assignments"],
+        "summary": "Create Household Visit",
+        "operationId": "create_household_visit_orgs__org_id__area_assignments__assignment_id__households__household_id__visits_post",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  { "$ref": "#/components/schemas/HouseholdVisitDefPost" },
+                  { "$ref": "#/components/schemas/HouseholdVisitDefPatch" }
+                ],
+                "title": "Data"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_HouseholdVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/households/{household_id}/visits/{visit_id}": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "Read Household Visit",
+        "operationId": "read_household_visit_orgs__org_id__area_assignments__assignment_id__households__household_id__visits__visit_id__get",
+        "parameters": [
+          {
+            "name": "visit_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Visit Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_HouseholdVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["area_assignments"],
+        "summary": "Update Household Visit",
+        "operationId": "update_household_visit_orgs__org_id__area_assignments__assignment_id__households__household_id__visits__visit_id__patch",
+        "parameters": [
+          {
+            "name": "visit_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Visit Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  { "$ref": "#/components/schemas/HouseholdVisitDefPost" },
+                  { "$ref": "#/components/schemas/HouseholdVisitDefPatch" }
+                ],
+                "title": "Data"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_HouseholdVisitDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["area_assignments"],
+        "summary": "Delete Household Visit",
+        "operationId": "delete_household_visit_orgs__org_id__area_assignments__assignment_id__households__household_id__visits__visit_id__delete",
+        "parameters": [
+          {
+            "name": "visit_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Visit Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "household_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Household Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "204": { "description": "Successful Response" },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/locations": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "List Assignment Locations",
+        "description": "List locations for an area assignment with visit statistics.",
+        "operationId": "list_assignment_locations_orgs__org_id__area_assignments__assignment_id__locations_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Page number",
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "within_boundary",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Within Boundary"
+            }
+          },
+          {
+            "name": "within_areas",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Within Areas"
+            }
+          },
+          {
+            "name": "buffer_meters",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "integer" }, { "type": "null" }],
+              "title": "Buffer Meters"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/LocationType" },
+                { "type": "null" }
+              ],
+              "title": "Type"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CollectionEnvelope_AssignmentLocationDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/locations/{location_id}": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "Get Assignment Location",
+        "operationId": "get_assignment_location_orgs__org_id__area_assignments__assignment_id__locations__location_id__get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "location_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Location Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AssignmentLocationDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/area_assignments/{assignment_id}/stats": {
+      "get": {
+        "tags": ["area_assignments"],
+        "summary": "Get Area Assignment Stats",
+        "operationId": "get_area_assignment_stats_orgs__org_id__area_assignments__assignment_id__stats_get",
+        "parameters": [
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Org Id" }
+          },
+          {
+            "name": "assignment_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Assignment Id" }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_AreaAssignmentStatsDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orgs/{org_id}/join_forms/{form_id}": {
+      "get": {
+        "summary": "Get Public Joinform",
+        "operationId": "get_public_joinform_orgs__org_id__join_forms__form_id__get",
+        "parameters": [
+          {
+            "name": "form_id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "title": "Form Id" }
+          },
+          {
+            "name": "org_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "anyOf": [{ "type": "integer" }, { "type": "null" }],
+              "title": "Org Id"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [{ "type": "string" }, { "type": "null" }],
+              "title": "Authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ItemEnvelope_JoinFormDefResponse_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AreaAssigneeDefResponse": {
+        "properties": {
+          "area_assignment_id": {
+            "type": "integer",
+            "title": "Area Assignment Id"
+          },
+          "user_id": { "type": "integer", "title": "User Id" },
+          "area_id": { "type": "integer", "title": "Area Id" },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "type": "integer",
+            "title": "Created By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "area_assignment_id",
+          "user_id",
+          "area_id",
+          "created",
+          "created_by_user_id"
+        ],
+        "title": "AreaAssigneeDefResponse"
+      },
+      "AreaAssignmentDefPatch": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "instructions": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Instructions"
+          },
+          "start_date": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "End Date"
+          },
+          "reporting_level": {
+            "$ref": "#/components/schemas/AreaAssignmentReportingLevel"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AreaAssignmentDefPatch"
+      },
+      "AreaAssignmentDefPost": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "instructions": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Instructions"
+          },
+          "start_date": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "End Date"
+          },
+          "reporting_level": {
+            "$ref": "#/components/schemas/AreaAssignmentReportingLevel"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": ["title", "reporting_level"],
+        "title": "AreaAssignmentDefPost"
+      },
+      "AreaAssignmentDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "organization_id": { "type": "integer", "title": "Organization Id" },
+          "project_id": { "type": "integer", "title": "Project Id" },
+          "title": { "type": "string", "title": "Title" },
+          "instructions": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Instructions"
+          },
+          "start_date": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "Start Date"
+          },
+          "end_date": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "End Date"
+          },
+          "reporting_level": {
+            "$ref": "#/components/schemas/AreaAssignmentReportingLevel"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "type": "integer",
+            "title": "Created By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "organization_id",
+          "project_id",
+          "title",
+          "instructions",
+          "start_date",
+          "end_date",
+          "reporting_level",
+          "created",
+          "created_by_user_id"
+        ],
+        "title": "AreaAssignmentDefResponse"
+      },
+      "AreaAssignmentReportingLevel": {
+        "type": "string",
+        "enum": ["location", "household"],
+        "title": "AreaAssignmentReportingLevel"
+      },
+      "AreaAssignmentStatsDefResponse": {
+        "properties": {
+          "num_locations": { "type": "integer", "title": "Num Locations" },
+          "num_households": { "type": "integer", "title": "Num Households" },
+          "num_visits": { "type": "integer", "title": "Num Visits" },
+          "num_successful_visits": {
+            "type": "integer",
+            "title": "Num Successful Visits"
+          },
+          "num_locations_visited": {
+            "type": "integer",
+            "title": "Num Locations Visited"
+          },
+          "num_households_visited": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Num Households Visited"
+          },
+          "num_households_successfully_visited": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Num Households Successfully Visited"
+          },
+          "metrics": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/LocationBooleanMetric" },
+                { "$ref": "#/components/schemas/LocationScale5Metric" }
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "num_locations",
+          "num_households",
+          "num_visits",
+          "num_successful_visits",
+          "num_locations_visited",
+          "num_households_visited",
+          "num_households_successfully_visited",
+          "metrics"
+        ],
+        "title": "AreaAssignmentStatsDefResponse"
+      },
+      "AreaDefPatch": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "description": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Description"
+          },
+          "boundary": { "$ref": "#/components/schemas/PolygonSchema-Input" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AreaDefPatch"
+      },
+      "AreaDefPost": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "description": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Description"
+          },
+          "boundary": { "$ref": "#/components/schemas/PolygonSchema-Input" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": ["title", "boundary"],
+        "title": "AreaDefPost"
+      },
+      "AreaDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "title": { "type": "string", "title": "Title" },
+          "description": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Description"
+          },
+          "organization_id": { "type": "integer", "title": "Organization Id" },
+          "boundary": { "$ref": "#/components/schemas/PolygonSchema-Output" },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "type": "integer",
+            "title": "Created By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "organization_id",
+          "boundary",
+          "created",
+          "created_by_user_id"
+        ],
+        "title": "AreaDefResponse"
+      },
+      "AssignmentLocationDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "title": { "type": "string", "title": "Title" },
+          "description": { "type": "string", "title": "Description" },
+          "latitude": { "type": "number", "title": "Latitude" },
+          "longitude": { "type": "number", "title": "Longitude" },
+          "organization_id": { "type": "integer", "title": "Organization Id" },
+          "num_estimated_households": {
+            "type": "integer",
+            "title": "Num Estimated Households"
+          },
+          "num_known_households": {
+            "type": "integer",
+            "title": "Num Known Households"
+          },
+          "num_visits": { "type": "integer", "title": "Num Visits" },
+          "num_successful_visits": {
+            "type": "integer",
+            "title": "Num Successful Visits"
+          },
+          "num_households_visited": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Num Households Visited"
+          },
+          "num_households_successful": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Num Households Successful"
+          },
+          "last_visited": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "Last Visited"
+          },
+          "created": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Created By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "latitude",
+          "longitude",
+          "organization_id",
+          "num_estimated_households",
+          "num_known_households",
+          "num_visits",
+          "num_successful_visits",
+          "num_households_visited",
+          "num_households_successful",
+          "last_visited",
+          "created",
+          "created_by_user_id"
+        ],
+        "title": "AssignmentLocationDefResponse"
+      },
+      "AssignmentMetricDefPatch": {
+        "properties": {
+          "question": { "type": "string", "title": "Question" },
+          "type": { "$ref": "#/components/schemas/MetricType" },
+          "defines_success": { "type": "boolean", "title": "Defines Success" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "AssignmentMetricDefPatch"
+      },
+      "AssignmentMetricDefPost": {
+        "properties": {
+          "question": { "type": "string", "title": "Question" },
+          "type": { "$ref": "#/components/schemas/MetricType" },
+          "defines_success": { "type": "boolean", "title": "Defines Success" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": ["question", "type", "defines_success"],
+        "title": "AssignmentMetricDefPost"
+      },
+      "AssignmentMetricDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "area_assignment_id": {
+            "type": "integer",
+            "title": "Area Assignment Id"
+          },
+          "question": { "type": "string", "title": "Question" },
+          "type": { "$ref": "#/components/schemas/MetricType" },
+          "defines_success": { "type": "boolean", "title": "Defines Success" },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "type": "integer",
+            "title": "Created By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "area_assignment_id",
+          "question",
+          "type",
+          "defines_success",
+          "created",
+          "created_by_user_id"
+        ],
+        "title": "AssignmentMetricDefResponse"
+      },
+      "CollectionEnvelope_AreaAssigneeDefResponse_": {
+        "properties": {
+          "data": {
+            "items": { "$ref": "#/components/schemas/AreaAssigneeDefResponse" },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[AreaAssigneeDefResponse]"
+      },
+      "CollectionEnvelope_AreaAssignmentDefResponse_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/AreaAssignmentDefResponse"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[AreaAssignmentDefResponse]"
+      },
+      "CollectionEnvelope_AreaDefResponse_": {
+        "properties": {
+          "data": {
+            "items": { "$ref": "#/components/schemas/AreaDefResponse" },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[AreaDefResponse]"
+      },
+      "CollectionEnvelope_AssignmentLocationDefResponse_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/AssignmentLocationDefResponse"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[AssignmentLocationDefResponse]"
+      },
+      "CollectionEnvelope_AssignmentMetricDefResponse_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/AssignmentMetricDefResponse"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[AssignmentMetricDefResponse]"
+      },
+      "CollectionEnvelope_ConnectedUserDefResponse_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/ConnectedUserDefResponse"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[ConnectedUserDefResponse]"
+      },
+      "CollectionEnvelope_HouseholdDefResponse_": {
+        "properties": {
+          "data": {
+            "items": { "$ref": "#/components/schemas/HouseholdDefResponse" },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[HouseholdDefResponse]"
+      },
+      "CollectionEnvelope_HouseholdVisitDefResponse_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/HouseholdVisitDefResponse"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[HouseholdVisitDefResponse]"
+      },
+      "CollectionEnvelope_LocationDefResponse_": {
+        "properties": {
+          "data": {
+            "items": { "$ref": "#/components/schemas/LocationDefResponse" },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[LocationDefResponse]"
+      },
+      "CollectionEnvelope_LocationVisitDefResponse_": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/LocationVisitDefResponse"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "meta": { "$ref": "#/components/schemas/EnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "CollectionEnvelope[LocationVisitDefResponse]"
+      },
+      "ConnectedUserDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "first_name": { "type": "string", "title": "First Name" },
+          "last_name": { "type": "string", "title": "Last Name" },
+          "email": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Email"
+          },
+          "phone": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Phone"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": ["id", "first_name", "last_name", "email", "phone"],
+        "title": "ConnectedUserDefResponse"
+      },
+      "EnvelopeMeta": {
+        "properties": {
+          "fields": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/zetkin__utils__envelope__common__FieldInfo"
+            },
+            "type": "object",
+            "title": "Fields"
+          },
+          "filters": {
+            "items": { "$ref": "#/components/schemas/FilterInfo" },
+            "type": "array",
+            "title": "Filters"
+          },
+          "ordering": {
+            "items": { "$ref": "#/components/schemas/OrderingInfo" },
+            "type": "array",
+            "title": "Ordering"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/EnvelopeMetaPagination"
+          }
+        },
+        "type": "object",
+        "required": ["fields", "filters", "ordering", "pagination"],
+        "title": "EnvelopeMeta"
+      },
+      "EnvelopeMetaPagination": {
+        "properties": {
+          "page": { "type": "integer", "title": "Page" },
+          "size": { "type": "integer", "title": "Size" },
+          "total": { "type": "integer", "title": "Total" }
+        },
+        "type": "object",
+        "required": ["page", "size", "total"],
+        "title": "EnvelopeMetaPagination"
+      },
+      "FilterInfo": {
+        "properties": {
+          "active": { "type": "boolean", "title": "Active" },
+          "param": { "type": "string", "title": "Param" },
+          "kind": { "type": "string", "title": "Kind" },
+          "type": { "type": "string", "title": "Type" }
+        },
+        "type": "object",
+        "required": ["active", "param", "kind", "type"],
+        "title": "FilterInfo"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HouseholdBooleanMetric": {
+        "properties": {
+          "metric_id": { "type": "integer", "title": "Metric Id" },
+          "response": {
+            "type": "string",
+            "enum": ["yes", "no"],
+            "title": "Response"
+          }
+        },
+        "type": "object",
+        "required": ["metric_id", "response"],
+        "title": "HouseholdBooleanMetric"
+      },
+      "HouseholdDefPatch": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "level": { "type": "integer", "title": "Level" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "HouseholdDefPatch"
+      },
+      "HouseholdDefPost": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "level": { "type": "integer", "title": "Level" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": ["title", "level"],
+        "title": "HouseholdDefPost"
+      },
+      "HouseholdDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "title": { "type": "string", "title": "Title" },
+          "level": { "type": "integer", "title": "Level" },
+          "location_id": { "type": "integer", "title": "Location Id" },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "type": "integer",
+            "title": "Created By User Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "level",
+          "location_id",
+          "created",
+          "created_by_user_id"
+        ],
+        "title": "HouseholdDefResponse"
+      },
+      "HouseholdScale5Metric": {
+        "properties": {
+          "metric_id": { "type": "integer", "title": "Metric Id" },
+          "response": {
+            "type": "integer",
+            "enum": [1, 2, 3, 4, 5],
+            "title": "Response"
+          }
+        },
+        "type": "object",
+        "required": ["metric_id", "response"],
+        "title": "HouseholdScale5Metric"
+      },
+      "HouseholdVisitDefPatch": {
+        "properties": {
+          "metrics": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/HouseholdBooleanMetric" },
+                { "$ref": "#/components/schemas/HouseholdScale5Metric" }
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "HouseholdVisitDefPatch"
+      },
+      "HouseholdVisitDefPost": {
+        "properties": {
+          "metrics": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/HouseholdBooleanMetric" },
+                { "$ref": "#/components/schemas/HouseholdScale5Metric" }
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "HouseholdVisitDefPost"
+      },
+      "HouseholdVisitDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "assignment_id": { "type": "integer", "title": "Assignment Id" },
+          "household_id": { "type": "integer", "title": "Household Id" },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "type": "integer",
+            "title": "Created By User Id"
+          },
+          "metrics": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/HouseholdBooleanMetric" },
+                { "$ref": "#/components/schemas/HouseholdScale5Metric" }
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "assignment_id",
+          "household_id",
+          "created",
+          "created_by_user_id",
+          "metrics"
+        ],
+        "title": "HouseholdVisitDefResponse"
+      },
+      "ItemEnvelopeMeta": {
+        "properties": {
+          "fields": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/zetkin__utils__envelope__common__FieldInfo"
+            },
+            "type": "object",
+            "title": "Fields"
+          }
+        },
+        "type": "object",
+        "required": ["fields"],
+        "title": "ItemEnvelopeMeta"
+      },
+      "ItemEnvelope_AreaAssigneeDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/AreaAssigneeDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[AreaAssigneeDefResponse]"
+      },
+      "ItemEnvelope_AreaAssignmentDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/AreaAssignmentDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[AreaAssignmentDefResponse]"
+      },
+      "ItemEnvelope_AreaAssignmentStatsDefResponse_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AreaAssignmentStatsDefResponse"
+          },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[AreaAssignmentStatsDefResponse]"
+      },
+      "ItemEnvelope_AreaDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/AreaDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[AreaDefResponse]"
+      },
+      "ItemEnvelope_AssignmentLocationDefResponse_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AssignmentLocationDefResponse"
+          },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[AssignmentLocationDefResponse]"
+      },
+      "ItemEnvelope_AssignmentMetricDefResponse_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AssignmentMetricDefResponse"
+          },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[AssignmentMetricDefResponse]"
+      },
+      "ItemEnvelope_ConnectedUserDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ConnectedUserDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[ConnectedUserDefResponse]"
+      },
+      "ItemEnvelope_HouseholdDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/HouseholdDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[HouseholdDefResponse]"
+      },
+      "ItemEnvelope_HouseholdVisitDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/HouseholdVisitDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[HouseholdVisitDefResponse]"
+      },
+      "ItemEnvelope_JoinFormDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/JoinFormDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[JoinFormDefResponse]"
+      },
+      "ItemEnvelope_LocationDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/LocationDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[LocationDefResponse]"
+      },
+      "ItemEnvelope_LocationVisitDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/LocationVisitDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[LocationVisitDefResponse]"
+      },
+      "ItemEnvelope_SessionDefResponse_": {
+        "properties": {
+          "data": { "$ref": "#/components/schemas/SessionDefResponse" },
+          "meta": { "$ref": "#/components/schemas/ItemEnvelopeMeta" },
+          "related": {
+            "additionalProperties": { "type": "object" },
+            "type": "object",
+            "title": "Related"
+          },
+          "success": { "type": "boolean", "title": "Success" }
+        },
+        "type": "object",
+        "required": ["data", "meta", "related", "success"],
+        "title": "ItemEnvelope[SessionDefResponse]"
+      },
+      "JoinFormDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "title": { "type": "string", "title": "Title" },
+          "description": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }],
+            "title": "Description"
+          },
+          "renderable": { "type": "boolean", "title": "Renderable" },
+          "embeddable": { "type": "boolean", "title": "Embeddable" },
+          "requires_email_verification": {
+            "type": "boolean",
+            "title": "Requires Email Verification"
+          },
+          "organization_id": { "type": "integer", "title": "Organization Id" },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/zetkin__features__joinforms__defs__FieldInfo"
+            },
+            "type": "array",
+            "title": "Fields"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "description",
+          "renderable",
+          "embeddable",
+          "requires_email_verification",
+          "organization_id",
+          "fields"
+        ],
+        "title": "JoinFormDefResponse"
+      },
+      "LocationBooleanMetric": {
+        "properties": {
+          "metric_id": { "type": "integer", "title": "Metric Id" },
+          "num_yes": { "type": "integer", "title": "Num Yes" },
+          "num_no": { "type": "integer", "title": "Num No" }
+        },
+        "type": "object",
+        "required": ["metric_id", "num_yes", "num_no"],
+        "title": "LocationBooleanMetric"
+      },
+      "LocationDefPatch": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "latitude": { "type": "number", "title": "Latitude" },
+          "longitude": { "type": "number", "title": "Longitude" },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "default": ""
+          },
+          "num_estimated_households": {
+            "type": "integer",
+            "title": "Num Estimated Households",
+            "default": 0
+          },
+          "type": { "$ref": "#/components/schemas/LocationType" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "LocationDefPatch"
+      },
+      "LocationDefPost": {
+        "properties": {
+          "title": { "type": "string", "title": "Title" },
+          "latitude": { "type": "number", "title": "Latitude" },
+          "longitude": { "type": "number", "title": "Longitude" },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "default": ""
+          },
+          "num_estimated_households": {
+            "type": "integer",
+            "title": "Num Estimated Households",
+            "default": 0
+          },
+          "type": { "$ref": "#/components/schemas/LocationType" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": ["type"],
+        "title": "LocationDefPost"
+      },
+      "LocationDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "title": { "type": "string", "title": "Title" },
+          "latitude": { "type": "number", "title": "Latitude" },
+          "longitude": { "type": "number", "title": "Longitude" },
+          "description": { "type": "string", "title": "Description" },
+          "organization_id": { "type": "integer", "title": "Organization Id" },
+          "num_estimated_households": {
+            "type": "integer",
+            "title": "Num Estimated Households"
+          },
+          "num_known_households": {
+            "type": "integer",
+            "title": "Num Known Households"
+          },
+          "created": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ],
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Created By User Id"
+          },
+          "type": { "$ref": "#/components/schemas/LocationType" }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "latitude",
+          "longitude",
+          "description",
+          "organization_id",
+          "num_estimated_households",
+          "num_known_households",
+          "created",
+          "created_by_user_id",
+          "type"
+        ],
+        "title": "LocationDefResponse"
+      },
+      "LocationScale5Metric": {
+        "properties": {
+          "metric_id": { "type": "integer", "title": "Metric Id" },
+          "num_values": {
+            "prefixItems": [
+              { "type": "integer" },
+              { "type": "integer" },
+              { "type": "integer" },
+              { "type": "integer" },
+              { "type": "integer" }
+            ],
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 5,
+            "title": "Num Values"
+          }
+        },
+        "type": "object",
+        "required": ["metric_id", "num_values"],
+        "title": "LocationScale5Metric"
+      },
+      "LocationType": {
+        "type": "string",
+        "enum": ["event", "assignment"],
+        "title": "LocationType"
+      },
+      "LocationVisitDefPatch": {
+        "properties": {
+          "metrics": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/LocationBooleanMetric" },
+                { "$ref": "#/components/schemas/LocationScale5Metric" }
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          },
+          "num_households_visited": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Num Households Visited"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "LocationVisitDefPatch"
+      },
+      "LocationVisitDefPost": {
+        "properties": {
+          "metrics": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/LocationBooleanMetric" },
+                { "$ref": "#/components/schemas/LocationScale5Metric" }
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          },
+          "num_households_visited": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Num Households Visited"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "LocationVisitDefPost"
+      },
+      "LocationVisitDefResponse": {
+        "properties": {
+          "id": { "type": "integer", "title": "Id" },
+          "assignment_id": { "type": "integer", "title": "Assignment Id" },
+          "location_id": { "type": "integer", "title": "Location Id" },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created"
+          },
+          "created_by_user_id": {
+            "type": "integer",
+            "title": "Created By User Id"
+          },
+          "metrics": {
+            "items": {
+              "anyOf": [
+                { "$ref": "#/components/schemas/LocationBooleanMetric" },
+                { "$ref": "#/components/schemas/LocationScale5Metric" }
+              ]
+            },
+            "type": "array",
+            "title": "Metrics"
+          },
+          "num_households_visited": {
+            "anyOf": [{ "type": "integer" }, { "type": "null" }],
+            "title": "Num Households Visited"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "assignment_id",
+          "location_id",
+          "created",
+          "created_by_user_id",
+          "metrics",
+          "num_households_visited"
+        ],
+        "title": "LocationVisitDefResponse"
+      },
+      "MetricType": {
+        "type": "string",
+        "enum": ["scale5", "bool"],
+        "title": "MetricType"
+      },
+      "OrderingInfo": {
+        "properties": {
+          "dir": { "type": "string", "title": "Dir" },
+          "field": { "type": "string", "title": "Field" }
+        },
+        "type": "object",
+        "required": ["dir", "field"],
+        "title": "OrderingInfo"
+      },
+      "PathData": {
+        "anyOf": [
+          {
+            "items": { "$ref": "#/components/schemas/PointData" },
+            "type": "array"
+          },
+          {
+            "prefixItems": [{ "$ref": "#/components/schemas/PointData" }],
+            "type": "array",
+            "maxItems": 1,
+            "minItems": 1
+          }
+        ]
+      },
+      "PointData": {
+        "prefixItems": [{ "type": "number" }, { "type": "number" }],
+        "type": "array",
+        "maxItems": 2,
+        "minItems": 2
+      },
+      "PolygonCoords-Input": {
+        "items": { "$ref": "#/components/schemas/PathData" },
+        "type": "array"
+      },
+      "PolygonCoords-Output": {
+        "items": { "$ref": "#/components/schemas/PathData" },
+        "type": "array"
+      },
+      "PolygonSchema-Input": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Polygon"],
+            "const": "Polygon",
+            "title": "Type"
+          },
+          "coordinates": { "$ref": "#/components/schemas/PolygonCoords-Input" }
+        },
+        "type": "object",
+        "required": ["type", "coordinates"],
+        "title": "PolygonSchema"
+      },
+      "PolygonSchema-Output": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["Polygon"],
+            "const": "Polygon",
+            "title": "Type"
+          },
+          "coordinates": { "$ref": "#/components/schemas/PolygonCoords-Output" }
+        },
+        "type": "object",
+        "required": ["type", "coordinates"],
+        "title": "PolygonSchema"
+      },
+      "SessionDefResponse": {
+        "properties": {
+          "created": { "type": "string", "title": "Created" },
+          "level": { "type": "integer", "title": "Level" },
+          "user_id": { "type": "integer", "title": "User Id" },
+          "factors": {
+            "items": { "type": "string" },
+            "type": "array",
+            "title": "Factors"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": ["created", "level", "user_id", "factors"],
+        "title": "SessionDefResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": { "type": "string", "title": "Message" },
+          "type": { "type": "string", "title": "Error Type" }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      },
+      "zetkin__features__joinforms__defs__FieldInfo": {
+        "properties": {
+          "slug": { "type": "string", "title": "Slug" },
+          "type": { "type": "string", "title": "Type" }
+        },
+        "type": "object",
+        "required": ["slug", "type"],
+        "title": "FieldInfo"
+      },
+      "zetkin__utils__envelope__common__FieldInfo": {
+        "properties": {
+          "can_patch": {
+            "type": "boolean",
+            "title": "Can Patch",
+            "default": false
+          },
+          "can_post": {
+            "type": "boolean",
+            "title": "Can Post",
+            "default": false
+          },
+          "nullable": {
+            "type": "boolean",
+            "title": "Nullable",
+            "default": false
+          },
+          "type": { "type": "string", "title": "Type" }
+        },
+        "type": "object",
+        "required": ["type"],
+        "title": "FieldInfo"
+      }
+    }
+  }
+}
